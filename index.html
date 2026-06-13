@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="競馬の条件別データを、集計条件と一緒にわかりやすく公開するデータサイトです。"
+    >
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0c5035">
+    <link rel="canonical" href="https://tonmoo-keiba-data.github.io/tonmoo-data-analysis/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:site_name" content="とんもぉ～のデータ分析">
+    <meta property="og:title" content="とんもぉ～のデータ分析 | 条件別競馬データ">
+    <meta
+      property="og:description"
+      content="年齢、斤量、競馬場、距離、クラス。条件を細かく揃え、競馬データをわかりやすく分析します。"
+    >
+    <meta property="og:url" content="https://tonmoo-keiba-data.github.io/tonmoo-data-analysis/">
+    <meta
+      property="og:image"
+      content="https://tonmoo-keiba-data.github.io/tonmoo-data-analysis/assets/tonmoo-character.jpg"
+    >
+    <meta name="twitter:card" content="summary_large_image">
+    <title>とんもぉ～のデータ分析 | 条件別競馬データ</title>
+    <link rel="icon" href="assets/tonmoo-character.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "とんもぉ～のデータ分析",
+        "url": "https://tonmoo-keiba-data.github.io/tonmoo-data-analysis/",
+        "description": "競馬の条件別データを、集計条件と一緒にわかりやすく公開するデータサイトです。",
+        "inLanguage": "ja"
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">本文へ移動</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="とんもぉ～のデータ分析 トップ">
+          <span class="brand-mark">と</span>
+          <span>
+            <strong>とんもぉ～のデータ分析</strong>
+            <small>条件を絞って、数字で見る。</small>
+          </span>
+        </a>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span></span><span></span><span></span>
+          <span class="sr-only">メニューを開く</span>
+        </button>
+        <nav id="site-nav" class="site-nav" aria-label="メインメニュー">
+          <a href="#featured">注目データ</a>
+          <a href="#database">データを探す</a>
+          <a href="#method">集計方針</a>
+          <a href="#about">このサイトについて</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">KEIBA DATA, CLEARLY.</p>
+            <h1>なんとなくを、<br><em>使えるデータ</em>に。</h1>
+            <p class="hero-lead">
+              年齢、斤量、競馬場、距離、クラス。
+              条件を細かく揃え、馬券検討で使いやすい形にまとめます。
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#database">データを探す</a>
+              <a class="button button-ghost" href="#featured">最新の分析を見る</a>
+            </div>
+            <dl class="hero-stats" aria-label="現在の公開データ">
+              <div><dt>公開分析</dt><dd>2<span>本</span></dd></div>
+              <div><dt>集計期間</dt><dd>10<span>年</span></dd></div>
+              <div><dt>更新</dt><dd>随時</dd></div>
+            </dl>
+          </div>
+          <div class="hero-visual">
+            <div class="visual-ring"></div>
+            <div class="character-card">
+              <img
+                src="assets/tonmoo-character.jpg"
+                alt="眼鏡をかけて競馬データを分析する馬のキャラクター、とんもお〜"
+              >
+            </div>
+            <div class="floating-note note-top">
+              <span>DATA NOTE</span>
+              <strong>条件を揃えて比較</strong>
+            </div>
+            <div class="floating-note note-bottom">
+              <span>NEW</span>
+              <strong>函館芝1200を公開</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="featured" class="section section-cream">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FEATURED ANALYSIS</p>
+            <h2>まず見てほしいデータ</h2>
+          </div>
+          <p>直近の検証から、馬券検討に使いやすい結論を抜粋しています。</p>
+        </div>
+
+        <article class="feature-panel">
+          <div class="feature-index">
+            <span>01</span>
+            <p>函館<br>芝1200</p>
+          </div>
+          <div class="feature-body">
+            <div class="tags">
+              <span>3歳</span><span>1勝クラス</span><span>2017–2025</span>
+            </div>
+            <h3>3歳馬は「いつ、何戦目で勝ったか」で差が出る</h3>
+            <p>
+              函館芝1200mの3歳以上1勝クラスを対象に、初勝利時期と
+              函館出走までのキャリアを比較。3歳春の成長と、直近勝ち上がりの鮮度が見えました。
+            </p>
+            <div class="key-findings">
+              <div>
+                <span>3歳1–3月勝ち</span>
+                <strong>複勝率 41.84%</strong>
+              </div>
+              <div>
+                <span>3歳4月以降勝ち</span>
+                <strong>複勝率 36.36%</strong>
+              </div>
+              <div>
+                <span>2歳時勝ち</span>
+                <strong>複勝率 24.06%</strong>
+              </div>
+            </div>
+            <button class="text-link article-open" type="button" data-article="hakodate">
+              詳しい分析を読む <span aria-hidden="true">→</span>
+            </button>
+          </div>
+          <aside class="feature-verdict">
+            <p>DATA VERDICT</p>
+            <strong>遅い勝ち上がり<br>＝低レベルではない</strong>
+            <span>芝短距離での直近勝利は評価</span>
+          </aside>
+        </article>
+      </section>
+
+      <section id="database" class="section database-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">DATA LIBRARY</p>
+            <h2>条件からデータを探す</h2>
+          </div>
+          <p>今後データが増えても、競馬場・馬場・クラスから絞り込めます。</p>
+        </div>
+
+        <div class="filter-bar" aria-label="分析データの絞り込み">
+          <label>
+            <span>キーワード</span>
+            <input id="search-input" type="search" placeholder="例：函館、3歳、芝1200">
+          </label>
+          <label>
+            <span>馬場</span>
+            <select id="surface-filter">
+              <option value="all">すべて</option>
+              <option value="芝">芝</option>
+              <option value="ダート">ダート</option>
+              <option value="芝・ダート">芝・ダート</option>
+            </select>
+          </label>
+          <label>
+            <span>クラス</span>
+            <select id="class-filter">
+              <option value="all">すべて</option>
+              <option value="1勝">1勝クラス</option>
+              <option value="全クラス">全クラス</option>
+            </select>
+          </label>
+          <button id="clear-filters" class="filter-clear" type="button">条件をクリア</button>
+        </div>
+
+        <p id="result-count" class="result-count" aria-live="polite"></p>
+        <div id="data-grid" class="data-grid">
+          <article
+            class="data-card"
+            data-search="函館 芝1200 3歳 1勝クラス 初勝利 キャリア"
+            data-surface="芝"
+            data-class="1勝"
+          >
+            <div class="card-top">
+              <span class="card-number">DATA 001</span>
+              <span class="status-badge">公開中</span>
+            </div>
+            <div class="course-icon turf"><span>函</span></div>
+            <p class="card-kicker">HAKODATE / TURF 1200m</p>
+            <h3>函館芝1200<br>3歳馬の勝ち上がり分析</h3>
+            <p>初勝利時期、キャリア数、勝ち上がりからの日数を比較。</p>
+            <dl class="card-meta">
+              <div><dt>対象</dt><dd>455走</dd></div>
+              <div><dt>期間</dt><dd>9年</dd></div>
+            </dl>
+            <button class="card-link article-open" type="button" data-article="hakodate">
+              データを見る <span aria-hidden="true">↗</span>
+            </button>
+          </article>
+
+          <article
+            class="data-card"
+            data-search="3歳 斤量 3kg減 芝 ダート 古馬混合"
+            data-surface="芝・ダート"
+            data-class="全クラス"
+          >
+            <div class="card-top">
+              <span class="card-number">DATA 002</span>
+              <span class="status-badge">公開中</span>
+            </div>
+            <div class="course-icon mixed"><span>3</span></div>
+            <p class="card-kicker">AGE ALLOWANCE / −3kg</p>
+            <h3>3歳馬の3kg減<br>芝・ダート比較</h3>
+            <p>1kg・2kg減を混ぜず、距離と開催月ごとの規定で抽出。</p>
+            <dl class="card-meta">
+              <div><dt>芝</dt><dd>9,454走</dd></div>
+              <div><dt>ダート</dt><dd>8,869走</dd></div>
+            </dl>
+            <button class="card-link article-open" type="button" data-article="allowance">
+              データを見る <span aria-hidden="true">↗</span>
+            </button>
+          </article>
+
+          <article
+            class="data-card coming-soon"
+            data-search="3歳 2勝クラス 今後追加"
+            data-surface="芝・ダート"
+            data-class="全クラス"
+          >
+            <div class="card-top">
+              <span class="card-number">NEXT</span>
+              <span class="status-badge muted">準備中</span>
+            </div>
+            <div class="course-icon future"><span>＋</span></div>
+            <p class="card-kicker">COMING NEXT</p>
+            <h3>3歳馬 × 2勝クラス<br>条件別データ</h3>
+            <p>今後の検証結果を、同じ形式で追加していきます。</p>
+            <dl class="card-meta">
+              <div><dt>状態</dt><dd>集計予定</dd></div>
+              <div><dt>更新</dt><dd>随時</dd></div>
+            </dl>
+            <span class="card-link disabled">準備中</span>
+          </article>
+        </div>
+        <p id="empty-message" class="empty-message" hidden>
+          条件に合うデータはまだありません。条件を変えてお試しください。
+        </p>
+      </section>
+
+      <section id="method" class="section method-section">
+        <div class="method-card">
+          <div>
+            <p class="eyebrow">OUR METHOD</p>
+            <h2>数字の前提も、<br>一緒に公開します。</h2>
+          </div>
+          <div class="method-steps">
+            <article><span>01</span><h3>条件を揃える</h3><p>期間、距離、馬場、クラス、斤量条件を明示します。</p></article>
+            <article><span>02</span><h3>混ぜない</h3><p>似ているようで違う条件は分離して集計します。</p></article>
+            <article><span>03</span><h3>実戦へ落とす</h3><p>数字だけで終わらせず、評価の使い方と注意点を示します。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section about-section">
+        <div class="about-character">
+          <img src="assets/tonmoo-character.jpg" alt="" loading="lazy">
+        </div>
+        <div>
+          <p class="eyebrow">ABOUT THIS SITE</p>
+          <h2>とんもお〜と一緒に、<br>競馬データを深掘り。</h2>
+          <p>
+            このサイトは、公開された競走結果を独自条件で集計し、考察を加えた研究サイトです。
+            元データの再配布ではなく、独自の集計値と分析を掲載します。
+          </p>
+          <p class="notice">
+            掲載内容は馬券の的中や利益を保証するものではありません。
+            最終的な判断はご自身の責任でお願いいたします。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="article-dialog" class="article-dialog">
+      <button class="dialog-close" type="button" aria-label="閉じる">×</button>
+      <div id="article-content"></div>
+    </dialog>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="brand-mark">と</span>
+        <div><strong>とんもぉ～のデータ分析</strong><small>条件を絞って、数字で見る。</small></div>
+      </div>
+      <nav aria-label="フッターメニュー">
+        <a href="#database">データ一覧</a>
+        <a href="#method">集計方針</a>
+        <a href="#about">免責事項</a>
+      </nav>
+      <p>© 2026 とんもぉ～のデータ分析</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

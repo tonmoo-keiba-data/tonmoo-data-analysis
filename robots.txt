@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tonmoo-keiba-data.github.io/tonmoo-data-analysis/sitemap.xml
