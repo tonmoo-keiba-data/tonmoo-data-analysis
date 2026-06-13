@@ -63,6 +63,7 @@ const articles = {
 const searchInput = document.querySelector("#search-input");
 const venueFilter = document.querySelector("#venue-filter");
 const surfaceFilter = document.querySelector("#surface-filter");
+const distanceFilter = document.querySelector("#distance-filter");
 const ageFilter = document.querySelector("#age-filter");
 const classFilter = document.querySelector("#class-filter");
 const clearFilters = document.querySelector("#clear-filters");
@@ -75,10 +76,83 @@ const articleContent = document.querySelector("#article-content");
 const menuButton = document.querySelector(".menu-button");
 const navigation = document.querySelector("#site-nav");
 
+const courseDistances = {
+  札幌: {
+    芝: [1200, 1500, 1800, 2000, 2600],
+    ダート: [1000, 1700, 2400],
+  },
+  函館: {
+    芝: [1200, 1800, 2000, 2600],
+    ダート: [1000, 1700, 2400],
+  },
+  福島: {
+    芝: [1200, 1800, 2000, 2600],
+    ダート: [1150, 1700, 2400],
+  },
+  新潟: {
+    芝: [1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400],
+    ダート: [1200, 1800, 2500],
+  },
+  東京: {
+    芝: [1400, 1600, 1800, 2000, 2300, 2400, 2500, 3400],
+    ダート: [1300, 1400, 1600, 2100, 2400],
+  },
+  中山: {
+    芝: [1200, 1600, 1800, 2000, 2200, 2500, 3600],
+    ダート: [1200, 1800, 2400, 2500],
+  },
+  中京: {
+    芝: [1200, 1400, 1600, 2000, 2200, 3000],
+    ダート: [1200, 1400, 1800, 1900],
+  },
+  京都: {
+    芝: [1200, 1400, 1600, 1800, 2000, 2200, 2400, 3000, 3200],
+    ダート: [1200, 1400, 1800, 1900],
+  },
+  阪神: {
+    芝: [1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 3000, 3200],
+    ダート: [1200, 1400, 1800, 2000],
+  },
+  小倉: {
+    芝: [1200, 1700, 1800, 2000, 2600],
+    ダート: [1000, 1700, 2400],
+  },
+};
+
+function availableDistances() {
+  const venue = venueFilter.value;
+  const surface = surfaceFilter.value;
+  const venues = venue === "all" || venue === "全場"
+    ? Object.keys(courseDistances)
+    : [venue];
+  const surfaces = surface === "芝" || surface === "ダート"
+    ? [surface]
+    : ["芝", "ダート"];
+  const distances = new Set();
+
+  venues.forEach((course) => {
+    surfaces.forEach((track) => {
+      (courseDistances[course]?.[track] || []).forEach((distance) => distances.add(distance));
+    });
+  });
+  return [...distances].sort((a, b) => a - b);
+}
+
+function updateDistanceOptions() {
+  const previous = distanceFilter.value;
+  const distances = availableDistances();
+  distanceFilter.innerHTML = [
+    '<option value="all">すべての距離</option>',
+    ...distances.map((distance) => `<option value="${distance}">${distance}m</option>`),
+  ].join("");
+  distanceFilter.value = distances.includes(Number(previous)) ? previous : "all";
+}
+
 function updateCards() {
   const query = searchInput.value.trim().toLowerCase();
   const venue = venueFilter.value;
   const surface = surfaceFilter.value;
+  const distance = distanceFilter.value;
   const age = ageFilter.value;
   const raceClass = classFilter.value;
   let visible = 0;
@@ -87,12 +161,14 @@ function updateCards() {
     const matchesSearch = !query || card.dataset.search.toLowerCase().includes(query);
     const matchesVenue = venue === "all" || card.dataset.venue === venue;
     const matchesSurface = surface === "all" || card.dataset.surface === surface;
+    const matchesDistance = distance === "all" || card.dataset.distance === distance;
     const matchesAge = age === "all" || card.dataset.age === age;
     const matchesClass = raceClass === "all" || card.dataset.class === raceClass;
     const show =
       matchesSearch &&
       matchesVenue &&
       matchesSurface &&
+      matchesDistance &&
       matchesAge &&
       matchesClass;
     card.hidden = !show;
@@ -113,6 +189,7 @@ function renderActiveFilters() {
   if (searchInput.value.trim()) filters.push(`キーワード：${searchInput.value.trim()}`);
   if (venueFilter.value !== "all") filters.push(`競馬場：${selectedLabel(venueFilter)}`);
   if (surfaceFilter.value !== "all") filters.push(`馬場：${selectedLabel(surfaceFilter)}`);
+  if (distanceFilter.value !== "all") filters.push(`距離：${selectedLabel(distanceFilter)}`);
   if (ageFilter.value !== "all") filters.push(`年齢：${selectedLabel(ageFilter)}`);
   if (classFilter.value !== "all") filters.push(`クラス：${selectedLabel(classFilter)}`);
 
@@ -121,14 +198,22 @@ function renderActiveFilters() {
     : '<span class="filter-empty">現在はすべてのデータを表示中</span>';
 }
 
-[searchInput, venueFilter, surfaceFilter, ageFilter, classFilter].forEach((control) => {
+[searchInput, distanceFilter, ageFilter, classFilter].forEach((control) => {
   control.addEventListener("input", updateCards);
+});
+
+[venueFilter, surfaceFilter].forEach((control) => {
+  control.addEventListener("input", () => {
+    updateDistanceOptions();
+    updateCards();
+  });
 });
 
 clearFilters.addEventListener("click", () => {
   searchInput.value = "";
   venueFilter.value = "all";
   surfaceFilter.value = "all";
+  updateDistanceOptions();
   ageFilter.value = "all";
   classFilter.value = "all";
   updateCards();
@@ -161,4 +246,5 @@ navigation.querySelectorAll("a").forEach((link) => {
   });
 });
 
+updateDistanceOptions();
 updateCards();
