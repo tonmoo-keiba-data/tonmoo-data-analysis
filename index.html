@@ -161,29 +161,74 @@
           <p>今後データが増えても、競馬場・馬場・クラスから絞り込めます。</p>
         </div>
 
-        <div class="filter-bar" aria-label="分析データの絞り込み">
-          <label>
-            <span>キーワード</span>
-            <input id="search-input" type="search" placeholder="例：函館、3歳、芝1200">
-          </label>
-          <label>
-            <span>馬場</span>
-            <select id="surface-filter">
-              <option value="all">すべて</option>
-              <option value="芝">芝</option>
-              <option value="ダート">ダート</option>
-              <option value="芝・ダート">芝・ダート</option>
-            </select>
-          </label>
-          <label>
-            <span>クラス</span>
-            <select id="class-filter">
-              <option value="all">すべて</option>
-              <option value="1勝">1勝クラス</option>
-              <option value="全クラス">全クラス</option>
-            </select>
-          </label>
-          <button id="clear-filters" class="filter-clear" type="button">条件をクリア</button>
+        <div class="filter-panel" aria-label="分析データの絞り込み">
+          <div class="filter-panel-head">
+            <div>
+              <span class="filter-label">SEARCH CONDITIONS</span>
+              <strong>条件を組み合わせて検索</strong>
+            </div>
+            <button id="clear-filters" class="filter-clear" type="button">すべて解除</button>
+          </div>
+          <div class="filter-bar">
+            <label class="filter-search">
+              <span>キーワード</span>
+              <input id="search-input" type="search" placeholder="例：函館、3歳、芝1200">
+            </label>
+            <label>
+              <span>競馬場</span>
+              <select id="venue-filter">
+                <option value="all">すべての競馬場</option>
+                <option value="札幌">札幌</option>
+                <option value="函館">函館</option>
+                <option value="福島">福島</option>
+                <option value="新潟">新潟</option>
+                <option value="東京">東京</option>
+                <option value="中山">中山</option>
+                <option value="中京">中京</option>
+                <option value="京都">京都</option>
+                <option value="阪神">阪神</option>
+                <option value="小倉">小倉</option>
+                <option value="全場">全場集計</option>
+              </select>
+            </label>
+            <label>
+              <span>馬場</span>
+              <select id="surface-filter">
+                <option value="all">芝・ダートすべて</option>
+                <option value="芝">芝</option>
+                <option value="ダート">ダート</option>
+                <option value="芝・ダート">芝・ダート複合集計</option>
+              </select>
+            </label>
+            <label>
+              <span>年齢</span>
+              <select id="age-filter">
+                <option value="all">すべての年齢</option>
+                <option value="2歳">2歳</option>
+                <option value="3歳">3歳</option>
+                <option value="4歳">4歳</option>
+                <option value="古馬">4歳以上・古馬</option>
+                <option value="全年齢">全年齢集計</option>
+              </select>
+            </label>
+            <label>
+              <span>クラス</span>
+              <select id="class-filter">
+                <option value="all">すべてのクラス</option>
+                <option value="新馬">新馬</option>
+                <option value="未勝利">未勝利</option>
+                <option value="1勝">1勝クラス</option>
+                <option value="2勝">2勝クラス</option>
+                <option value="3勝">3勝クラス</option>
+                <option value="OP・L">オープン・リステッド</option>
+                <option value="G3">G3</option>
+                <option value="G2">G2</option>
+                <option value="G1">G1</option>
+                <option value="全クラス">全クラス集計</option>
+              </select>
+            </label>
+          </div>
+          <div id="active-filters" class="active-filters" aria-live="polite"></div>
         </div>
 
         <p id="result-count" class="result-count" aria-live="polite"></p>
@@ -191,7 +236,9 @@
           <article
             class="data-card"
             data-search="函館 芝1200 3歳 1勝クラス 初勝利 キャリア"
+            data-venue="函館"
             data-surface="芝"
+            data-age="3歳"
             data-class="1勝"
           >
             <div class="card-top">
@@ -214,7 +261,9 @@
           <article
             class="data-card"
             data-search="3歳 斤量 3kg減 芝 ダート 古馬混合"
+            data-venue="全場"
             data-surface="芝・ダート"
+            data-age="3歳"
             data-class="全クラス"
           >
             <div class="card-top">
@@ -237,8 +286,10 @@
           <article
             class="data-card coming-soon"
             data-search="3歳 2勝クラス 今後追加"
+            data-venue="全場"
             data-surface="芝・ダート"
-            data-class="全クラス"
+            data-age="3歳"
+            data-class="2勝"
           >
             <div class="card-top">
               <span class="card-number">NEXT</span>

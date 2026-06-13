@@ -61,12 +61,15 @@ const articles = {
 };
 
 const searchInput = document.querySelector("#search-input");
+const venueFilter = document.querySelector("#venue-filter");
 const surfaceFilter = document.querySelector("#surface-filter");
+const ageFilter = document.querySelector("#age-filter");
 const classFilter = document.querySelector("#class-filter");
 const clearFilters = document.querySelector("#clear-filters");
 const cards = [...document.querySelectorAll(".data-card")];
 const resultCount = document.querySelector("#result-count");
 const emptyMessage = document.querySelector("#empty-message");
+const activeFilters = document.querySelector("#active-filters");
 const dialog = document.querySelector("#article-dialog");
 const articleContent = document.querySelector("#article-content");
 const menuButton = document.querySelector(".menu-button");
@@ -74,36 +77,59 @@ const navigation = document.querySelector("#site-nav");
 
 function updateCards() {
   const query = searchInput.value.trim().toLowerCase();
+  const venue = venueFilter.value;
   const surface = surfaceFilter.value;
+  const age = ageFilter.value;
   const raceClass = classFilter.value;
   let visible = 0;
 
   cards.forEach((card) => {
     const matchesSearch = !query || card.dataset.search.toLowerCase().includes(query);
-    const matchesSurface =
-      surface === "all" ||
-      card.dataset.surface === surface ||
-      card.dataset.surface === "芝・ダート";
-    const matchesClass =
-      raceClass === "all" ||
-      card.dataset.class === raceClass ||
-      card.dataset.class === "全クラス";
-    const show = matchesSearch && matchesSurface && matchesClass;
+    const matchesVenue = venue === "all" || card.dataset.venue === venue;
+    const matchesSurface = surface === "all" || card.dataset.surface === surface;
+    const matchesAge = age === "all" || card.dataset.age === age;
+    const matchesClass = raceClass === "all" || card.dataset.class === raceClass;
+    const show =
+      matchesSearch &&
+      matchesVenue &&
+      matchesSurface &&
+      matchesAge &&
+      matchesClass;
     card.hidden = !show;
     if (show) visible += 1;
   });
 
   resultCount.textContent = `${visible}件のデータを表示しています`;
   emptyMessage.hidden = visible !== 0;
+  renderActiveFilters();
 }
 
-[searchInput, surfaceFilter, classFilter].forEach((control) => {
+function selectedLabel(select) {
+  return select.options[select.selectedIndex].text;
+}
+
+function renderActiveFilters() {
+  const filters = [];
+  if (searchInput.value.trim()) filters.push(`キーワード：${searchInput.value.trim()}`);
+  if (venueFilter.value !== "all") filters.push(`競馬場：${selectedLabel(venueFilter)}`);
+  if (surfaceFilter.value !== "all") filters.push(`馬場：${selectedLabel(surfaceFilter)}`);
+  if (ageFilter.value !== "all") filters.push(`年齢：${selectedLabel(ageFilter)}`);
+  if (classFilter.value !== "all") filters.push(`クラス：${selectedLabel(classFilter)}`);
+
+  activeFilters.innerHTML = filters.length
+    ? filters.map((filter) => `<span>${filter}</span>`).join("")
+    : '<span class="filter-empty">現在はすべてのデータを表示中</span>';
+}
+
+[searchInput, venueFilter, surfaceFilter, ageFilter, classFilter].forEach((control) => {
   control.addEventListener("input", updateCards);
 });
 
 clearFilters.addEventListener("click", () => {
   searchInput.value = "";
+  venueFilter.value = "all";
   surfaceFilter.value = "all";
+  ageFilter.value = "all";
   classFilter.value = "all";
   updateCards();
   searchInput.focus();
